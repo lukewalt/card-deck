@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 // tells Go we want to create a new type
 type deck []string
@@ -20,7 +24,7 @@ func newDeck() deck {
 	return cards
 }
 
-// reciever is like a method to an instance spec to type
+// reciever is like a method to an instance spec to type; binds function to vars of bound type
 // (input type) any variable of type deck gets access to this method
 // uses one/two letters from type instead of 'self' or 'this'
 func (d deck) print() {
@@ -32,4 +36,17 @@ func (d deck) print() {
 // regular func with return stated
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// uses reciever to bind to type deck
+// crates type conversion to return string and joins each with comma
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+// returns error type if ioutil is unsuccessful
+// converts deck type to string; passes in file and converted type
+func (d deck) saveToFile(filename string) error {
+	stringToByte := []byte(d.toString())
+	return ioutil.WriteFile(filename, stringToByte, 0666)
 }
