@@ -24,7 +24,12 @@ func newDeck() deck {
 // (input type) any variable of type deck gets access to this method
 // uses one/two letters from type instead of 'self' or 'this'
 func (d deck) print() {
-	for _, card := range d {
-		fmt.Println(card)
+	for i, card := range d {
+		fmt.Println(i, card)
 	}
+}
+
+// regular func with return stated
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
