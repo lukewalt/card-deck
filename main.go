@@ -1,9 +1,12 @@
 package main
 
 func main() {
+	// assigns a new deck to a cards var
 	cards := newDeck()
-	cards = append(cards, "Six of Spades") // immutable function
 
-	// pass var cards to print
-	cards.print()
+	// two vars assigned to respective return values from deal()
+	hand, remainingCards := deal(cards, 5)
+
+	hand.print()
+	remainingCards.print()
 }
