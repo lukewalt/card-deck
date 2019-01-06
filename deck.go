@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// tells Go we want to create a new type
+// creates a higher level of abstraction above type string
 type deck []string
 
 func newDeck() deck {
