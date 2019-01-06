@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // tells Go we want to create a new type
@@ -68,9 +69,14 @@ func newDeckFromFile(filename string) deck {
 }
 
 func (d deck) shuffle() {
-	// loop; random num; swap current card w card at rand num i
+	// uses int64 timestamp to generate source for random number
+	source := rand.NewSource(time.Now().UnixNano())
+	// creates new random number from source
+	r := rand.New(source)
+
 	for i := range d {
-		newPos := rand.Intn(len(d) - 1)
+		newPos := r.Intn(len(d) - 1)
+		// swap current card w card at rand num i
 		d[i], d[newPos] = d[newPos], d[i]
 	}
 }
