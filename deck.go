@@ -36,7 +36,7 @@ func (d deck) print() {
 	}
 }
 
-// regular func with return stated
+// takes a deck as arg instead of use of reciever
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
