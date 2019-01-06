@@ -3,14 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	cards := deck{newCard(), newCard()}
-	cards = append(cards, "Six of Spades") // immutable function
+	// assigns a new deck to a cards var
+	cards := newDeck()
+	cards.shuffle()
 
-	for i, card := range cards {
-		fmt.Println(i, card)
-	}
-}
+	// two vars assigned to respective return values from deal()
+	hand, remainingCards := deal(cards, 5)
 
-func newCard() string {
-	return "Five of Diamonds"
+	fmt.Println("-- Hand --")
+	hand.print()
+
+	fmt.Println("-- Remaining Cards --")
+	remainingCards.print()
 }
